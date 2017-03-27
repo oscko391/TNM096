@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1490608556 source:h:\tnm096\tnm096\lab1\lab1\src\main.cpp
+	"main.h"
+	"Puzzle.h"
+
+1490608455 h:\tnm096\tnm096\lab1\lab1\include\main.h
+
+1490610202 h:\tnm096\tnm096\lab1\lab1\include\puzzle.h
+	<iostream>
+	<stdlib.h>
+
+1490610401 source:h:\tnm096\tnm096\lab1\lab1\src\puzzle.cpp
+	"Puzzle.h"
+
