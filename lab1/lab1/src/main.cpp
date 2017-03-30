@@ -6,6 +6,7 @@ int main(int argc, char*args[]){
     p.print();
 
     int h1 = p.nmbrMisplacedTiles();
+    int h2 = p.ManhattDist();
 
     std::cout << "h1 = " << h1 << std::endl;
 }

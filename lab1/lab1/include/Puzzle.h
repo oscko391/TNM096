@@ -12,6 +12,7 @@ class Puzzle
         void print();
 
         int nmbrMisplacedTiles();
+        int ManhattDist();
 
 
     protected:

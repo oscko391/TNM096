@@ -1,7 +1,7 @@
-#include "C:/Users/oscar/skola/TNM096/TNM096/lab1/lab1/include/Puzzle.h"
+#include "../include/Puzzle.h"
 //#include "Puzzle.h"
 #include <ctime>
-
+#include <math.h>
 
 Puzzle::Puzzle()
 {
@@ -78,4 +78,48 @@ int Puzzle::nmbrMisplacedTiles()
     }
 
     return counter;
+}
+
+int Puzzle::ManhattDist()
+{
+
+    //ROw -> ceil( (this/3) -1 )
+    int rowShouldBe;
+    int colShouldBe;
+    int distance = 0;
+
+    for (int rows = 0; rows < sizeof(board)/sizeof(*board); rows++)
+    {
+        for (int cols = 0; cols < sizeof(*board)/sizeof(*board[0]); cols++)
+        {
+            int value= board[rows][cols];
+
+            // Ignore the blank space (0)
+            if(value != 0){
+                int thisSpaceShouldBe = (rows*3)+1;
+
+
+                rowShouldBe = ceil(value/3.0-1);
+                colShouldBe = value%3 - 1;
+
+                // Special case for 3, 6
+                if(value == 3 || value == 6) colShouldBe = 2;
+
+
+                std::cout <<  value <<  ": Row " << rowShouldBe << " Col " << colShouldBe << std::endl;
+
+            // case for the zero
+            } else {
+                rowShouldBe = 2;
+                colShouldBe = 2;
+                std::cout <<  value <<  ": Row " << rowShouldBe << " Col " << colShouldBe << std::endl;
+            }
+
+            // Calculate the manhattan distance for this slot
+
+            // add to total Manhattan distance
+        }
+    }
+
+    return distance;
 }

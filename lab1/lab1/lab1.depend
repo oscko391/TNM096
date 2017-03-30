@@ -23,3 +23,14 @@
 	<iostream>
 	<stdlib.h>
 
+1490897382 source:c:\users\adam_\desktop\tnm096\lab1\lab1\src\main.cpp
+	"../include/Puzzle.h"
+
+1490896074 c:\users\adam_\desktop\tnm096\lab1\lab1\include\puzzle.h
+	<iostream>
+	<stdlib.h>
+
+1490893248 source:c:\users\adam_\desktop\tnm096\lab1\lab1\src\puzzle.cpp
+	"C:/Users/oscar/skola/TNM096/TNM096/lab1/lab1/include/Puzzle.h"
+	<ctime>
+
