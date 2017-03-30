@@ -1,5 +1,5 @@
 
-#include "C:/Users/oscar/skola/TNM096/TNM096/lab1/lab1/include/Puzzle.h"
+#include "../include/Puzzle.h"
 
 int main(int argc, char*args[]){
     Puzzle p = Puzzle();

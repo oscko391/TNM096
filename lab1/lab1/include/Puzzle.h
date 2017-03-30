@@ -11,6 +11,8 @@ class Puzzle
 
         void print();
 
+        int nmbrMisplacedTiles();
+
 
     protected:
 
