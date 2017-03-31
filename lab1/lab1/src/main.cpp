@@ -3,7 +3,9 @@
 int main(int argc, char*args[])
 {
     Puzzle p = Puzzle();
+
     p.print();
+
 
     int h1 = p.nmbrMisplacedTiles();
     int h2 = p.ManhattDist();
@@ -12,4 +14,6 @@ int main(int argc, char*args[])
     std::cout << "h2 = " << h2 << std::endl;
 
     p.aStarSolver(p);
+
+
 }
