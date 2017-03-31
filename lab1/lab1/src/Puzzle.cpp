@@ -80,6 +80,7 @@ int Puzzle::nmbrMisplacedTiles()
     return counter;
 }
 
+// computes heuristic h2, calculates manhattan distance for all tiles
 int Puzzle::ManhattDist()
 {
 
@@ -116,8 +117,10 @@ int Puzzle::ManhattDist()
             }
 
             // Calculate the manhattan distance for this slot
-
+            int manHatDist = abs(rows - rowShouldBe) + abs(cols - colShouldBe);
+            std::cout << "manhattan distance: " << manHatDist << std::endl;
             // add to total Manhattan distance
+            distance += manHatDist;
         }
     }
 

@@ -9,4 +9,5 @@ int main(int argc, char*args[]){
     int h2 = p.ManhattDist();
 
     std::cout << "h1 = " << h1 << std::endl;
+    std::cout << "h2 = " << h2 << std::endl;
 }
