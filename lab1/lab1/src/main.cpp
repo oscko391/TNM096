@@ -1,7 +1,8 @@
 
 #include "../include/Puzzle.h"
 
-int main(int argc, char*args[]){
+int main(int argc, char*args[])
+{
     Puzzle p = Puzzle();
     p.print();
 
@@ -10,4 +11,6 @@ int main(int argc, char*args[]){
 
     std::cout << "h1 = " << h1 << std::endl;
     std::cout << "h2 = " << h2 << std::endl;
+
+    p.aStarSolver(p);
 }

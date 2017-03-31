@@ -1,7 +1,8 @@
 #include "../include/Puzzle.h"
-//#include "Puzzle.h"
 #include <ctime>
 #include <math.h>
+#include <vector>
+#include <queue>
 
 Puzzle::Puzzle()
 {
@@ -37,6 +38,18 @@ Puzzle::Puzzle()
                     break; //breaks while loop
                 }
             }
+        }
+    }
+}
+
+Puzzle::Puzzle(int (&newBoard)[3][3])
+{
+    //create new board with values from newBoard
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            board[i][j] = newBoard[i][j];
         }
     }
 }
@@ -80,6 +93,8 @@ int Puzzle::nmbrMisplacedTiles()
     return counter;
 }
 
+
+
 // computes heuristic h2, calculates manhattan distance for all tiles
 int Puzzle::ManhattDist()
 {
@@ -96,7 +111,8 @@ int Puzzle::ManhattDist()
             int value= board[rows][cols];
 
             // Ignore the blank space (0)
-            if(value != 0){
+            if(value != 0)
+            {
                 int thisSpaceShouldBe = (rows*3)+1;
 
 
@@ -109,8 +125,10 @@ int Puzzle::ManhattDist()
 
                 std::cout <<  value <<  ": Row " << rowShouldBe << " Col " << colShouldBe << std::endl;
 
-            // case for the zero
-            } else {
+                // case for the zero
+            }
+            else
+            {
                 rowShouldBe = 2;
                 colShouldBe = 2;
                 std::cout <<  value <<  ": Row " << rowShouldBe << " Col " << colShouldBe << std::endl;
@@ -125,4 +143,15 @@ int Puzzle::ManhattDist()
     }
 
     return distance;
+}
+
+void Puzzle::aStarSolver(Puzzle p)
+{
+    std::priority_queue<Puzzle, std::vector<Puzzle>, CompareH1> closedSet;
+
+    closedSet.push(p);
+
+    Puzzle temp = closedSet.top();
+
+    temp.print();
 }
