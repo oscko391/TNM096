@@ -1,4 +1,3 @@
-
 #include "../include/Puzzle.h"
 
 int main(int argc, char*args[])

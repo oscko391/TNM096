@@ -144,9 +144,15 @@ int Puzzle::ManhattDist()
 
     return distance;
 }
+/*
+int Puzzle::getGscore()
+{
+    return gScore;
+}*/
 
 void Puzzle::aStarSolver(Puzzle p)
 {
+
     std::priority_queue<Puzzle, std::vector<Puzzle>, CompareH1> closedSet;
 
     closedSet.push(p);
