@@ -134,6 +134,7 @@ bool Puzzle::checkBoard()
 void Puzzle::swapZero( int newZeroPos )
 {
     std::swap(board[zeroPos], board[newZeroPos]);
+    zeroPos = newZeroPos;
 }
 
 void Puzzle::aStarSolver(Puzzle p)
@@ -160,6 +161,10 @@ void Puzzle::aStarSolver(Puzzle p)
         openSet.pop();
         closedSet.push_back(currPuzzle);
 
+        std::cout << "Currently ev puzzle: ";
+        currPuzzle.print();
+        std::cout << "Zero pos: " << currPuzzle.zeroPos << "\n";
+
         if (currPuzzle.checkBoard())
         {
             std::cout << "solved puzzle!" << std::endl;
@@ -171,10 +176,14 @@ void Puzzle::aStarSolver(Puzzle p)
 
         possMoves = currPuzzle.getMoves();
 
+        std::cout << "Possible moves:";
         for(int i=0; i < possMoves.size(); i++)
         {
-            Puzzle newPuzz = Puzzle(p.getBoard(), p.gScore+1);
+
+            Puzzle newPuzz = Puzzle(currPuzzle.getBoard(), currPuzzle.gScore+1);
             newPuzz.swapZero(possMoves[i]);
+
+            newPuzz.print();
 
             bool isPuzzInSet = false;
             //check if board already evaluated
@@ -182,39 +191,16 @@ void Puzzle::aStarSolver(Puzzle p)
             {
                 if (newPuzz == closedSet[i])
                 {
-                    std::cout << "hej" << "\n";
                     isPuzzInSet = true;
 
                 }
             }
             if (!isPuzzInSet){
-                newPuzz.print();
-
                 openSet.push(newPuzz);
                 push_heap(closedSet.begin(), closedSet.end());
             }
-
-
-
-
         }
-
-
     }
-
-
-
-
-    /*
-        for (int i = 0; i < moves.size(); i++)
-        {
-            int newBoard[9];
-
-            std::swap(newBoard[currPuzz.zeroPos], newBoard[moves[i]]);
-            Puzzle newPuzz = Puzzle(newBoard, currPuzz.gScore++);
-            newPuzz.print();
-        }
-    */
 }
 
 std::vector<int> Puzzle::getMoves()
