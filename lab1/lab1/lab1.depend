@@ -21,19 +21,27 @@
 	<chrono>
 	<array>
 
-1490960206 source:c:\users\oscar\skola\tnm096\tnm096\lab1\lab1\src\main.cpp
+1491236250 source:c:\users\oscar\skola\tnm096\tnm096\lab1\lab1\src\main.cpp
 	"../include/Puzzle.h"
+	<vector>
 
-1490960518 source:c:\users\oscar\skola\tnm096\tnm096\lab1\lab1\src\puzzle.cpp
+1491236646 source:c:\users\oscar\skola\tnm096\tnm096\lab1\lab1\src\puzzle.cpp
 	"../include/Puzzle.h"
 	<ctime>
 	<math.h>
 	<vector>
 	<queue>
+	<algorithm>
+	<random>
+	<chrono>
+	<array>
 
-1490960484 c:\users\oscar\skola\tnm096\tnm096\lab1\lab1\include\puzzle.h
+1491235970 c:\users\oscar\skola\tnm096\tnm096\lab1\lab1\include\puzzle.h
 	<iostream>
 	<stdlib.h>
+	<array>
+	<math.h>
+	<vector>
 
 1490897382 source:c:\users\adam_\desktop\tnm096\lab1\lab1\src\main.cpp
 	"../include/Puzzle.h"

@@ -24,6 +24,7 @@ Puzzle::Puzzle()
     for (int i = 0; i < 9; i++)
     {
         board[i] = values[i];
+        if (values[i] == 0) zeroPos = i;
     }
 
 }
@@ -33,8 +34,10 @@ Puzzle::Puzzle(int newBoard[9], int _gScore)
 
     gScore = _gScore;
     //create new board with values from newBoard
-    for (int i = 0; i < 9; i++){
-        if(newBoard[i] == 0){
+    for (int i = 0; i < 9; i++)
+    {
+        if(newBoard[i] == 0)
+        {
             zeroPos = i;
         }
 
@@ -52,8 +55,11 @@ Puzzle::~Puzzle()
 //prints values in the board
 void Puzzle::print()
 {
-    for(int i=0; i<3; i++){
-        for(int j=0; j<3; j++){
+    std::cout << "\n";
+    for(int i=0; i<3; i++)
+    {
+        for(int j=0; j<3; j++)
+        {
             std::cout << board[i*3+j];
         }
         std::cout << "\n";
@@ -61,10 +67,11 @@ void Puzzle::print()
 }
 
 // computes heuristic h1, checks how many tiles are correctly placed
-int Puzzle::nmbrMisplacedTiles()
+int Puzzle::nmbrMisplacedTiles() const
 {
     int counter = 0;
-    for(int i=0; i<9; i++){
+    for(int i=0; i<9; i++)
+    {
         int tileValue = board[i];
         if(tileValue-1 != i && tileValue != 0)
             counter++;
@@ -79,9 +86,11 @@ int Puzzle::nmbrMisplacedTiles()
 int Puzzle::ManhattDist()
 {
     int distance = 0;
-    for(int i=0; i<9; i++){
+    for(int i=0; i<9; i++)
+    {
         // Ignore 0
-        if(board[i] != 0){
+        if(board[i] != 0)
+        {
             int thisRow = getRow(i);
             int thisCol = getCol(i);
             int correctCol = ((board[i]-1) % 3);
@@ -96,21 +105,155 @@ int Puzzle::ManhattDist()
     return distance;
 }
 
+bool Puzzle::operator<(const Puzzle &p)
+{
+    int f1 = this->gScore + this->nmbrMisplacedTiles();
+    int f2 = p.gScore + p.nmbrMisplacedTiles();
 
-int* Puzzle::getBoard(){
+    return f1 < f2;
+
+}
+
+int* Puzzle::getBoard()
+{
     return board;
 }
 
+bool Puzzle::checkBoard()
+{
+    for(int i=0; i<8; i++)
+    {
+        if(board[i] != i+1)
+            return false;
+    }
+    return true;
+}
+
+
+
+void Puzzle::swapZero( int newZeroPos )
+{
+    std::swap(board[zeroPos], board[newZeroPos]);
+}
 
 void Puzzle::aStarSolver(Puzzle p)
 {
+    std::priority_queue<Puzzle, std::vector<Puzzle>, CompareH1> openSet;
+    std::vector<int> moves;
+    std::vector<Puzzle> closedSet;
 
-    std::priority_queue<Puzzle, std::vector<Puzzle>, CompareH1> closedSet;
 
-    closedSet.push(p);
+    std::vector<int> possMoves;
+    /*
+        for(int i=0; i<possMoves.size(); i++){
+            Puzzle temp = Puzzle(p.getBoard(), p.gScore+1);
+            temp.swapZero(possMoves.at(i));
+            temp.print();
+        }*/
 
-    Puzzle temp = closedSet.top();
+    openSet.push(p);
+    make_heap(closedSet.begin(), closedSet.end());
 
-    temp.print();
+    while (!openSet.empty())
+    {
+        Puzzle currPuzzle = openSet.top();
+        openSet.pop();
+        closedSet.push_back(currPuzzle);
 
+        if (currPuzzle.checkBoard())
+        {
+            std::cout << "solved puzzle!" << std::endl;
+            currPuzzle.print();
+            break;
+        }
+
+        sort_heap(closedSet.begin(), closedSet.end());
+
+        possMoves = currPuzzle.getMoves();
+
+        for(int i=0; i < possMoves.size(); i++)
+        {
+            Puzzle newPuzz = Puzzle(p.getBoard(), p.gScore+1);
+            newPuzz.swapZero(possMoves[i]);
+
+            bool isPuzzInSet = false;
+            //check if board already evaluated
+            for (int j = 0; j < closedSet.size(); j++)
+            {
+                if (newPuzz == closedSet[i])
+                {
+                    std::cout << "hej" << "\n";
+                    isPuzzInSet = true;
+
+                }
+            }
+            if (!isPuzzInSet){
+                newPuzz.print();
+
+                openSet.push(newPuzz);
+                push_heap(closedSet.begin(), closedSet.end());
+            }
+
+
+
+
+        }
+
+
+    }
+
+
+
+
+    /*
+        for (int i = 0; i < moves.size(); i++)
+        {
+            int newBoard[9];
+
+            std::swap(newBoard[currPuzz.zeroPos], newBoard[moves[i]]);
+            Puzzle newPuzz = Puzzle(newBoard, currPuzz.gScore++);
+            newPuzz.print();
+        }
+    */
+}
+
+std::vector<int> Puzzle::getMoves()
+{
+    std::vector<int> possibleMoves;
+
+    switch(zeroPos)
+    {
+    case 0:
+        possibleMoves = { 1, 3 };
+        break;
+    case 1:
+        possibleMoves = {0,2,4};
+        break;
+    case 2:
+        possibleMoves = {1,5};
+        break;
+    case 3:
+        possibleMoves = {0,4,6};
+        break;
+    case 4:
+        possibleMoves = {1,3,5,7};
+        break;
+    case 5:
+        possibleMoves = {2,4,8};
+        break;
+    case 6:
+        possibleMoves = {3,7};
+        break;
+    case 7:
+        possibleMoves = {4,6,8};
+        break;
+    case 8:
+        possibleMoves = {5,7};
+        break;
+
+    default:
+        break;
+    }
+
+    return possibleMoves;
 }

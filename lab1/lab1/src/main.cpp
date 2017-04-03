@@ -1,19 +1,12 @@
 #include "../include/Puzzle.h"
-
+#include <vector>
 int main(int argc, char*args[])
 {
-    Puzzle p = Puzzle();
 
-    p.print();
+    int b1[9] = {1, 2, 3, 4, 5, 6, 0, 7, 8 };
 
+    Puzzle p1 = Puzzle(b1, 0);
 
-    int h1 = p.nmbrMisplacedTiles();
-    int h2 = p.ManhattDist();
-
-    std::cout << "h1 = " << h1 << std::endl;
-    std::cout << "h2 = " << h2 << std::endl;
-
-    p.aStarSolver(p);
-
+    p1.aStarSolver(p1);
 
 }

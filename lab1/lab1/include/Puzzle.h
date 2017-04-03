@@ -4,42 +4,61 @@
 #include <stdlib.h>
 #include <array>
 #include <math.h>
+#include <vector>
 
 class Puzzle
 {
-    public:
-        Puzzle();
-        Puzzle(int newBoard[9], int _gScore);
-        virtual ~Puzzle();
+public:
+    Puzzle();
+    Puzzle(int newBoard[9], int _gScore);
+    virtual ~Puzzle();
 
-        void print();
+    void print();
 
-        int nmbrMisplacedTiles();
-        int ManhattDist();
+    int nmbrMisplacedTiles() const;
+    int ManhattDist();
 
-        void aStarSolver(Puzzle P);
-        int gScore = 0;
-        int zeroPos;
+    void aStarSolver(Puzzle p);
+    int gScore = 0;
+    int zeroPos;
+    int* copyBoard();
+    void swapZero( int newZeroPos );
+    bool checkBoard();
 
-        int* getBoard();
-
-        int getCol(int index){
-            int col = index%3;
-
-            return col;
+    bool operator<(const Puzzle &p);
+    bool operator==( Puzzle p)
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (board[i] != p.getBoard()[i])
+            {
+                return false;
+            }
         }
-        int getRow(int index){
-            int row = floor(index/3);
+        return true;
+    }
 
-            return row;
-        }
+    int* getBoard();
 
+    int getCol(int index)
+    {
+        int col = index%3;
 
+        return col;
+    }
+    int getRow(int index)
+    {
+        int row = floor(index/3);
 
-    protected:
+        return row;
+    }
 
-    private:
-        int board[9];
+    std::vector<int> getMoves();
+
+protected:
+
+private:
+    int board[9];
 
 
 };
@@ -52,7 +71,7 @@ public:
         int f1 = p1.gScore + p1.nmbrMisplacedTiles();
         int f2 = p2.gScore + p2.nmbrMisplacedTiles();
 
-        return f1 < f2;
+        return f1 > f2;
     }
 };
 
