@@ -13,6 +13,8 @@ public:
     Puzzle(int newBoard[9], int _gScore);
     virtual ~Puzzle();
 
+    void scrambleBoard(int noSwap);
+
     void print();
 
     int nmbrMisplacedTiles() const;

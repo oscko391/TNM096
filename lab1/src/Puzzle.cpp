@@ -8,18 +8,20 @@
 #include <chrono>       // std::chrono::system_clock
 #include <array>        // std::array
 
+
+// Creates a solved puzzle
 Puzzle::Puzzle()
 {
     //fill board with distinct random values
     //let zero be the empty tile
     //srand(time(0));
 
-    std::array<int,9> values {0,1,2,3,4,5,6,7,8};
+    std::array<int,9> values {1,2,3,4,5,6,7,8,0};
 
     // obtain a time-based seed:
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    //unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 
-    shuffle (values.begin(), values.end(), std::default_random_engine(seed));
+    //shuffle (values.begin(), values.end(), std::default_random_engine(seed));
 
     for (int i = 0; i < 9; i++)
     {
@@ -45,6 +47,20 @@ Puzzle::Puzzle(int newBoard[9], int _gScore)
 
     }
 
+}
+
+// Scramble puzzle by swapping zero 'noSwaps' times to ensure
+// we get a solvable puzzle
+void Puzzle::scrambleBoard(int noSwap)
+{
+    srand(time(0));
+        //swap the zero a few times
+    for (int i = 0; i < noSwap; i++)
+    {
+        std::vector<int> moves = this->getMoves();
+        int randIndex = rand() % moves.size();
+        swapZero(moves[randIndex]);
+    }
 }
 
 Puzzle::~Puzzle()
@@ -139,6 +155,7 @@ void Puzzle::swapZero( int newZeroPos )
 
 void Puzzle::aStarSolver(Puzzle p)
 {
+    std::cout << "Solving puzzle...\n\n";
     std::priority_queue<Puzzle, std::vector<Puzzle>, CompareH1> openSet;
     std::vector<int> moves;
     std::vector<Puzzle> closedSet;
@@ -155,13 +172,10 @@ void Puzzle::aStarSolver(Puzzle p)
         openSet.pop();
         closedSet.push_back(currPuzzle);
 
-        std::cout << "Currently ev puzzle: ";
-        currPuzzle.print();
-
         if (currPuzzle.checkBoard())
         {
-            std::cout << "solved puzzle!" << std::endl;
-            std::cout << "No. moves: "<< currPuzzle.gScore << std::endl;
+            std::cout << "...done!" << std::endl;
+            std::cout << "gScore: "<< currPuzzle.gScore << std::endl;
 
             currPuzzle.print();
             break;
@@ -181,9 +195,8 @@ void Puzzle::aStarSolver(Puzzle p)
             //check if board already evaluated
             for (int j = 0; j < closedSet.size(); j++){
                 if (newPuzz == closedSet[j]){
-                    std::cout << "Already in set: ";
-                    newPuzz.print();
                     isPuzzInSet = true;
+                    break;
                 }
             }
             if (!isPuzzInSet){
