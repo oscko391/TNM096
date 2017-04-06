@@ -27,7 +27,7 @@ public:
     void swapZero( int newZeroPos );
     bool checkBoard();
 
-    bool operator<(const Puzzle &p);
+    bool operator<( Puzzle p);
     bool operator==( Puzzle p)
     {
         for (int i = 0; i < 9; i++)
@@ -65,13 +65,13 @@ private:
 
 };
 
-class CompareH1
+class CompareH2
 {
 public:
     bool operator()(Puzzle &p1, Puzzle &p2)
     {
-        int f1 = p1.gScore + p1.nmbrMisplacedTiles();
-        int f2 = p2.gScore + p2.nmbrMisplacedTiles();
+        int f1 = p1.gScore + p1.ManhattDist();
+        int f2 = p2.gScore + p2.ManhattDist();
 
         return f1 > f2;
     }

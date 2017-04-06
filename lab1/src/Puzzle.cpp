@@ -121,10 +121,10 @@ int Puzzle::ManhattDist()
     return distance;
 }
 
-bool Puzzle::operator<(const Puzzle &p)
+bool Puzzle::operator<( Puzzle p)
 {
-    int f1 = this->gScore + this->nmbrMisplacedTiles();
-    int f2 = p.gScore + p.nmbrMisplacedTiles();
+    int f1 = this->gScore + this->ManhattDist();
+    int f2 = p.gScore + p.ManhattDist();
 
     return f1 < f2;
 
@@ -156,7 +156,7 @@ void Puzzle::swapZero( int newZeroPos )
 void Puzzle::aStarSolver(Puzzle p)
 {
     std::cout << "Solving puzzle...\n\n";
-    std::priority_queue<Puzzle, std::vector<Puzzle>, CompareH1> openSet;
+    std::priority_queue<Puzzle, std::vector<Puzzle>, CompareH2> openSet;
     std::vector<int> moves;
     std::vector<Puzzle> closedSet;
 
