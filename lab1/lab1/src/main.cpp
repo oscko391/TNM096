@@ -3,9 +3,15 @@
 int main(int argc, char*args[])
 {
 
-    int b1[9] = {1, 2, 3, 4, 5, 6, 0, 7, 8 };
+    int b1[9] = {1,2,3,
+                 4,6,8,
+                 7,5,0};
 
-    Puzzle p1 = Puzzle(b1, 0);
+    int b2[9] = {0,1,2,
+                 4,5,3,
+                 7,8,6};
+
+    Puzzle p1 = Puzzle(b2, 0);
 
     p1.aStarSolver(p1);
 
