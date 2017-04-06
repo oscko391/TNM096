@@ -1,7 +1,0 @@
-# Build 
-**/bin
-**/obj
-
-# Codeblock files
-**.depend
-**.layout
