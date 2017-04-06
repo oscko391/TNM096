@@ -1,7 +1,7 @@
 # Build 
-bin/
-obj/
+**/bin
+**/obj
 
 # Codeblock files
-*.depend
-*.layout
+**.depend
+**.layout
