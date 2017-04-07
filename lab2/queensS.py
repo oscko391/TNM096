@@ -13,7 +13,8 @@ def now():
     
 
 # 1. Set up the problem and set the starting time
-n = 30
+n = 27
+	
 print "\nStarting at at  "+now()[12:20]
 print "problem with n =",n
 start = time()

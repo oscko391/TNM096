@@ -15,10 +15,15 @@ int main(int argc, char*args[])
 
 
     Puzzle p = Puzzle();
-    p.scrambleBoard(100); // Swapping zero n times
+    p.scrambleBoard(3);
+    while( p.nmbrMisplacedTiles() == p.ManhattDist() ){
+        p = Puzzle();
+        p.scrambleBoard(5);
+    }
+     // Swapping zero n times
     std::cout << "Initial puzzle: \n";
     p.print();
-
-    p.aStarSolver(p);
+    std::cout << "h1: " << p.nmbrMisplacedTiles() << "\nh2: " << p.ManhattDist() << std::endl;
+    //p.aStarSolver(p);
 
 }

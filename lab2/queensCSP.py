@@ -15,7 +15,7 @@ def now():
     
 
 # 1. Set up the problem and starting time
-n = 10
+n = 100
 print "\nStarting at at  "+now()[12:20]
 print "problem with n =",n
 start = time()
@@ -23,9 +23,9 @@ start = time()
 problem = NQueensCSP(n)
 
 # 2. Solve the problem
-solution = backtracking_search(problem)
+#solution = backtracking_search(problem)
 #solution = AC3(problem); 
-#solution = min_conflicts(problem)
+solution = min_conflicts(problem)
 
 # 3. Print the results
 print
@@ -40,10 +40,10 @@ if type(solution) is bool:
 # 4. Handle other solutions next
 elif problem.goal_test(solution):
     print "Solution:", solution
-    problem.display(problem.infer_assignment())
+    #problem.display(problem.infer_assignment())
 else:
     print "Failed - domains: " + str(problem.curr_domains)
-    problem.display(problem.infer_assignment())
+    #problem.display(problem.infer_assignment())
 
 # 5. Print elapsed time
 end = time()
