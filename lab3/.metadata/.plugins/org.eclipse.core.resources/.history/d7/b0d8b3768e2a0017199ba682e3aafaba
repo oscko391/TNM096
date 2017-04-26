@@ -1,0 +1,39 @@
+import java.util.Vector;
+
+public class Clause {
+	
+	private Vector<String> negVec = new Vector<String>();
+	private Vector<String> posVec = new Vector<String>();
+	
+	Clause(String theString){
+		// Clear whitespaces
+		theString = theString.replaceAll(" ", "");
+
+		theString = theString.replaceAll("V", " ");
+		
+		// Creates an array where variables are splitted 
+		//... ["-a", "b", "c",...]
+		String[] parts = theString.split(" "); 
+		System.out.println(parts.length);
+		
+		
+		// Fill negVec and posVec
+		for (int i = 0; i < parts.length; i++) {
+			if(parts[i].contains("-")){
+				negVec.addElement(parts[i]);
+			} else {
+				posVec.addElement(parts[i]);
+			}
+		}
+	}
+	
+	
+	public void display(){
+		for(int i=0; i<negVec.size(); i++){
+			System.out.println(negVec.elementAt(i)));
+		}
+	}
+	
+	
+	
+}

@@ -1,0 +1,25 @@
+
+public class Engine {
+
+	private String input;
+	private String CNFform;
+	
+	public Engine(String theInput){
+		input = theInput;
+		
+		CNFform = convToCNF(theInput);
+		
+	}
+	
+	
+	
+	private convToCNF(String original){
+		// a<=>b -> (a=>b)&(b=>a) 
+		if(int a = original.indexOf("<=>"))
+			System.out.println(a);
+		// a => b  -> -a | b
+		
+		//
+	}
+	
+}

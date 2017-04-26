@@ -1,0 +1,8 @@
+
+public class Clause {
+	
+	Clause(String theString){
+		
+	}
+	
+}

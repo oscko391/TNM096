@@ -1,0 +1,11 @@
+
+public class Clause {
+	
+	private Vector<String> negVec = new Vector<String>();
+	private Vector<String> posVec = new Vector<String>();
+	
+	Clause(String theString){
+		
+	}
+	
+}

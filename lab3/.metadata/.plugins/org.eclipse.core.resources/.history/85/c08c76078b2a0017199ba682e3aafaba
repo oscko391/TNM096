@@ -1,0 +1,11 @@
+
+public class Engine {
+
+	private String input;
+	
+	public Engine(String theInput){
+		input = theInput;
+		
+	}
+	
+}

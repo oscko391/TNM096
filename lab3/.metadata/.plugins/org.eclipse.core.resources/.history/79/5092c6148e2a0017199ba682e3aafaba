@@ -1,0 +1,18 @@
+import java.util.Vector;
+
+public class Clause {
+	
+	private Vector<String> negVec = new Vector<String>();
+	private Vector<String> posVec = new Vector<String>();
+	
+	Clause(String theString){
+		// Clear whitespaces
+		theString = theString.replaceAll(" ", "");
+
+		theString = theString.replaceAll("V", " ");
+		
+		String[] parts = theString.split(" "); 
+		System.out.println(parts.length);
+	}
+	
+}
