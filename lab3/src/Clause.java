@@ -31,8 +31,10 @@ public class Clause {
 	public boolean isValid(){
 		for(int i = 0; i < negVec.size(); i++){
 			for(int j = 0; j < posVec.size(); j++){
-				if(negVec.get(i).equals(posVec.get(j)))
+				if(negVec.get(i).equals(posVec.get(j))){
 					//ta bort dem
+				}
+
 			}
 		}
 		return true;
