@@ -2,7 +2,6 @@ import java.util.Vector;
 
 public class Engine {
 
-	private String input;
 	private Vector<Clause> clauseVec = new Vector<Clause>();
 	
 	Engine(String[] stringClauses){
@@ -10,10 +9,14 @@ public class Engine {
 			Clause c = new Clause(stringClauses[i]);
 			
 			// Add c to the clusters vec if it is valid
-			if(c.isValid()){
+			if(!c.isEmpty()){
 				clauseVec.addElement(c);
 				c.display();
 			}
 		}
 	}
+
+	public void resolve(){
+        System.out.println("Resolving...");
+    }
 }

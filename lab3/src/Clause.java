@@ -1,4 +1,3 @@
-import java.util.Iterator;
 import java.util.Vector;
 
 public class Clause {
@@ -9,7 +8,6 @@ public class Clause {
 	Clause(String theString){
 		// Clear whitespaces
 		theString = theString.replaceAll(" ", "");
-
 		theString = theString.replaceAll("V", " ");
 		
 		// Creates an array where variables are splitted 
@@ -26,25 +24,31 @@ public class Clause {
 				posVec.addElement(parts[i]);
 			}
 		}
+
+		this.simplify();
 	}
-	
-	public boolean isValid(){
+
+    /**
+     * Simplifies the clause by removing elements in both negVec and posVec
+     */
+    public void simplify(){
 		for(int i = 0; i < negVec.size(); i++){
 			for(int j = 0; j < posVec.size(); j++){
 				if(negVec.get(i).equals(posVec.get(j))){
-					//ta bort dem
+					//Remove from both negVec and posVec
+                    negVec.removeElementAt(i);
+                    posVec.removeElementAt(j);
 				}
 
 			}
 		}
-		return true;
 	}
 	
 	
 	public void display(){
-		
+
 		System.out.println("Clause: ");
-		
+
 		if(negVec.size() > 0){
 			System.out.print("   negVec: ");
 			for(int i=0; i<negVec.size(); i++){
@@ -61,7 +65,9 @@ public class Clause {
 			System.out.println();
 		}
 	}
-	
-	
-	
+
+
+    public boolean isEmpty() {
+	    return (negVec.size() + posVec.size()) == 0;
+    }
 }

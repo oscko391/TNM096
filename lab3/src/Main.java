@@ -5,6 +5,7 @@ public class Main {
         String[] formulae = {"-a V a", "a", "-b"};
         
         Engine theEngine = new Engine(formulae);
+        theEngine.resolve();
 
     }
 	
