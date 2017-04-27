@@ -2,6 +2,6 @@
 bin/
 obj/
 
-# Codeblock files
-*.depend
-*.layout
+# Only push .java files
+!*/
+!*.java

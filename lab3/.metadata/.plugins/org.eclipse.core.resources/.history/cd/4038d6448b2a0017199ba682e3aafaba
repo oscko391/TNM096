@@ -1,8 +1,0 @@
-
-public class Engine {
-
-	private String input;
-	private Clause[] clauses;
-	
-	Engine(String[] clauses)
-}
