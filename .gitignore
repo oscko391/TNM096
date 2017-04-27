@@ -3,5 +3,5 @@ bin/
 obj/
 
 # Only push .java files
-!*/
+*.*
 !*.java
