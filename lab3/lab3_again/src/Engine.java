@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Engine {
 
-	private Vector<Clause> clauseVec = new Vector<Clause>();
+	public Vector<Clause> clauseVec = new Vector<Clause>();
 
 	Engine(String[] stringClauses) {
 		for (int i = 0; i < stringClauses.length; i++) {
@@ -30,8 +30,6 @@ public class Engine {
 		do {
 			Vector<Clause> newKB = new Vector<Clause>();
 			c = null;
-			
-			boolean cont = false;
 
 			for (int i = 0; i < clauseVec.size() - 1; i++) {
 				for (int j = i + 1; j < clauseVec.size(); j++) {
@@ -46,12 +44,16 @@ public class Engine {
 					}
 				}
 			}
-			
 			clauseVec = newKB;
-		} while (c != null);
+		} while (!c.isEmpty());
 		
 		
 		System.out.println("Solved!");
+		for (int i = 0; i < clauseVec.size(); i++)
+		{
+			if (!clauseVec.get(i).isEmpty())
+				clauseVec.get(i).display();
+		}
 	}
 
 	public Clause resolution(Clause c1, Clause c2) {
@@ -64,13 +66,12 @@ public class Engine {
 					literal = c1.posVec.get(i);
 		}
 		
-		for(int i=0; literal!=null && i<c1.posVec.size(); i++){
-			if(c2.negVec.contains(c1.posVec.get(i) ) )
-					literal = c1.posVec.get(i);
+		for(int i=0; literal==null && i<c2.posVec.size(); i++){
+			if(c1.negVec.contains(c2.posVec.get(i) ) )
+					literal = c2.posVec.get(i);
 		}
 		
 		if (literal!=null){
-			
 			
 			for(int i=0; i<c1.posVec.size(); i++){
 				if( !c1.posVec.get(i).equals(literal) && !newClause.posVec.contains(c1.posVec.get(i)) )
@@ -94,7 +95,10 @@ public class Engine {
 		}
 		
 		if(literal != null && newClause.isContradictory())
+		{
+			System.out.println("null");
 			return null;
+		}
 		return newClause;
 	}
 }

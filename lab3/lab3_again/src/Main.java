@@ -6,7 +6,7 @@ public class Main {
         
         Engine theEngine = new Engine(formulae);
         theEngine.resolve();
-
+        
     }
 	
 }
