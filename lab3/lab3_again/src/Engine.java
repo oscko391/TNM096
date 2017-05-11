@@ -25,33 +25,34 @@ public class Engine {
 			
 		
 		Clause c;
-		
+		Vector<Clause> newKB = new Vector<Clause>();
  		
 		do {
-			Vector<Clause> newKB = new Vector<Clause>();
-			c = null;
+			
+			c = new Clause();
+
 
 			for (int i = 0; i < clauseVec.size() - 1; i++) {
 				for (int j = i + 1; j < clauseVec.size(); j++) {
 					c = resolution(clauseVec.get(i), clauseVec.get(j));
-					
 					// If i and j can be resolved into a new clause
 					if (c != null){
 						newKB.addElement(c);
-					} else {
+					} 
+					else {
 						newKB.addElement(clauseVec.get(i));
 						newKB.addElement(clauseVec.get(j));
 					}
 				}
 			}
 			clauseVec = newKB;
-		} while (!c.isEmpty());
+		} while (c!= null && !c.isEmpty());
 		
 		
 		System.out.println("Solved!");
 		for (int i = 0; i < clauseVec.size(); i++)
 		{
-			if (!clauseVec.get(i).isEmpty())
+			if (clauseVec.get(i)!= null && !clauseVec.get(i).isEmpty())
 				clauseVec.get(i).display();
 		}
 	}
@@ -93,6 +94,7 @@ public class Engine {
 					newClause.negVec.add(c2.negVec.get(i));
 			}
 		}
+
 		
 		if(literal != null && newClause.isContradictory())
 		{
