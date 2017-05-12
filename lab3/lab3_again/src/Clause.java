@@ -73,7 +73,55 @@ public class Clause {
 		
 	}
 	
+    public boolean isSubset(Clause c)
+    {
+    	for (int i = 0; i < posVec.size(); i++)
+    	{
+    		if (!c.posVec.contains(posVec.get(i)))
+    			return false;
+    	}
+    	
+    	for (int i = 0; i < negVec.size(); i++)
+    	{
+    		if (!c.negVec.contains(negVec.get(i)))
+    			return false;
+    	}
+    	
+    	return true;
+    }
+    
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((negVec == null) ? 0 : negVec.hashCode());
+		result = prime * result + ((posVec == null) ? 0 : posVec.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Clause other = (Clause) obj;
+		if (negVec == null) {
+			if (other.negVec != null)
+				return false;
+		} else if (!negVec.equals(other.negVec))
+			return false;
+		if (posVec == null) {
+			if (other.posVec != null)
+				return false;
+		} else if (!posVec.equals(other.posVec))
+			return false;
+		return true;
+	}
+
 	public void display(){
 
 		System.out.print("[");
