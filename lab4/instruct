@@ -1,0 +1,9 @@
+SWI-prolog 
+
+>['~/usr/.../strips.pl']. // Compile strips
+>['~/usr/.../blocks.pl']. // Compile planer
+>.plan (a,RETURN to exit)
+
+Kör om:
+>['~/usr/.../blocks.pl']. // Compile planer
+efter ändringar
