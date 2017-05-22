@@ -30,13 +30,13 @@ act( climbDown(Box),
 
 % turn on/off light switch
 act( turnOn(),
-     [shakey(S), box(Box), light(L, false), in(S, Pos), in(Box, Pos), on(S, Box)],
+     [shakey(S), box(Box), light(L, false), in(S, L), in(Box, L), on(S, Box)],
      [light(L, false)],
      [light(L, true)]
      ).
 
 act( turnOff(),
-     [shakey(S), box(Box), light(L, true), in(S, Pos), in(Box, Pos), on(S, Box)],
+     [shakey(S), box(Box), light(L, true), in(S, L), in(Box, L), on(S, Box)],
      [light(L, true)],
      [light(L, false)]
      ).
@@ -45,7 +45,8 @@ act( turnOff(),
 
 goal_state( 
     [
-    light(light1, false)
+    light(light1, false),
+    in(box2,room2)
     ]).
 
 initial_state(
