@@ -5,3 +5,5 @@ obj/
 # Only push .java files
 *.*
 !*.java
+
+!*.pl
